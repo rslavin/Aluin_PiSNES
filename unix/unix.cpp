@@ -459,7 +459,7 @@ void S9xInitInputDevices ()
 	sfc_key[UP_1] = get_integer_conf("Keyboard", "UP_1", RPI_KEY_UP);
 	sfc_key[DOWN_1] = get_integer_conf("Keyboard", "DOWN_1", RPI_KEY_DOWN);
 
-	sfc_key[QUIT] = get_integer_conf("Keyboard", "QUIT", RPI_KEY_QUIT);
+	sfc_key[MODIFIER] = get_integer_conf("Keyboard", "MODIFIER", RPI_KEY_MODIFIER);
 	sfc_key[ACCEL] = get_integer_conf("Keyboard", "ACCEL", RPI_KEY_ACCEL);
 
 /*	sfc_key[LEFT_2] = SDLK_4;
@@ -498,7 +498,7 @@ void S9xInitInputDevices ()
 	sfc_joy[LEFT_2] = get_integer_conf("Joystick", "LEFT_2", RPI_JOY_LEFT);
 	sfc_joy[RIGHT_2] = get_integer_conf("Joystick", "RIGHT_2", RPI_JOY_RIGHT);
 
-	sfc_joy[QUIT] = get_integer_conf("Joystick", "QUIT", RPI_JOY_QUIT);
+	sfc_joy[MODIFIER] = get_integer_conf("Joystick", "MODIFIER", RPI_JOY_MODIFIER);
 	sfc_joy[ACCEL] = get_integer_conf("Joystick", "ACCEL", RPI_JOY_ACCEL);
 
 	sfc_joy[QLOAD] = get_integer_conf("Joystick", "QLOAD", RPI_JOY_QLOAD);
@@ -930,12 +930,12 @@ void S9xProcessEvents (bool8_32 block)
 	}
 
 	//Check START+R,L for quicksave/quickload. Needs to go here outside of the internal processing
-	if (joy_buttons[0][sfc_joy[QLOAD]] || (joy_buttons[0][sfc_joy[SELECT_1]] && joy_buttons[0][sfc_joy[L_1]] )) {
+	if (joy_buttons[0][sfc_joy[QLOAD]] && joy_buttons[0][sfc_joy[MODIFIER]]){//|| (joy_buttons[0][sfc_joy[SELECT_1]] && joy_buttons[0][sfc_joy[L_1]] )) {
 		char fname[256];
 		strcpy(fname, S9xGetFilename (".000"));
 		S9xLoadSnapshot (fname);
 	}
-	if (joy_buttons[0][sfc_joy[QSAVE]] || (joy_buttons[0][sfc_joy[SELECT_1]] && joy_buttons[0][sfc_joy[R_1]] )) {
+	if (joy_buttons[0][sfc_joy[QSAVE]] && joy_buttons[0][sfc_joy[MODIFIER]]){//|| (joy_buttons[0][sfc_joy[SELECT_1]] && joy_buttons[0][sfc_joy[R_1]] )) {
 		char fname[256];
 		strcpy(fname, S9xGetFilename (".000"));
 		S9xFreezeGame (fname);
@@ -1149,9 +1149,9 @@ uint32 S9xReadJoypad (int which1)
 		if (joy_buttons[which1][sfc_joy[LEFT_2]] || keyssnes[sfc_key[LEFT_2]] == SDL_PRESSED )	val |= SNES_LEFT_MASK;
 		if (joy_buttons[which1][sfc_joy[RIGHT_2]] || keyssnes[sfc_key[RIGHT_2]] == SDL_PRESSED )  val |= SNES_RIGHT_MASK;		
 	}
-	if (keyssnes[sfc_key[QUIT]] == SDL_PRESSED) S9xExit();
+	if (keyssnes[sfc_key[MODIFIER]] == SDL_PRESSED) S9xExit();
 
-	if (which1==0 && (joy_buttons[which1][sfc_joy[QUIT]]) && (val & SNES_START_MASK)) S9xExit();
+	if (which1==0 && (joy_buttons[which1][sfc_joy[MODIFIER]]) && (val & SNES_START_MASK)) S9xExit();
 
 	return(val);
 }

@@ -28,7 +28,7 @@
 #define RD_2 27
 
 #define ACCEL 50
-#define QUIT 51
+#define MODIFIER 51
 #define HELP 52
 
 #define QLOAD 55
