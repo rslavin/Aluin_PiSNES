@@ -7,7 +7,7 @@ This is an SNES emulator for Raspberry Pi based on [PiSNES](https://code.google.
 * Player 2 controls can now be bound to a joystick
 * Added Playstation 3 controller support
 
-The snes9x.cfg configuration file is currently set to PS3 controls, but can be modified to work with XBox or other controllers.
+The snes9x.cfg configuration file is currently set to PS3 controls, but can be modified to work with XBox or other controllers. Be sure to read the comments in the config file for instructions on how to exit, quickload, and quicksave.
 
 Installation
 ============
@@ -26,4 +26,3 @@ Clone this repo into the destination directory (e.g., /opt/retropie/emulators/al
     <theme>snes</theme>
   </system>
 ```
-
