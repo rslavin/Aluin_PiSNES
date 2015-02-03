@@ -23,7 +23,7 @@
 #define RPI_JOY_R	11
 #define RPI_JOY_START	3
 #define RPI_JOY_SELECT	0
-define RPI_JOY_MODIFIER	16
+#define RPI_JOY_MODIFIER	16
 #define RPI_JOY_ACCEL	99
 #define RPI_JOY_QLOAD	1
 #define RPI_JOY_QSAVE	2

@@ -313,7 +313,7 @@ static uint32 fe_ReadJoypad (int which1)
 	if (keyssnes[sfc_key[LEFT_1]] == SDL_PRESSED || joy_axes[joyaxis_LR] == LEFT)	val |= SNES_LEFT_MASK;
 	if (keyssnes[sfc_key[RIGHT_1]] == SDL_PRESSED || joy_axes[joyaxis_LR] == RIGHT)	val |= SNES_RIGHT_MASK;
 
-	if (keyssnes[sfc_key[QUIT]] == SDL_PRESSED || joy_buttons[sfc_joy[QUIT]]) fe_exit();
+	if (keyssnes[sfc_key[MODIFIER]] == SDL_PRESSED || joy_buttons[sfc_joy[MODIFIER]]) fe_exit();
 
 	if (val&SNES_SELECT_MASK && val&SNES_START_MASK) fe_exit();
 
@@ -380,7 +380,7 @@ static void fe_S9xInitInputDevices ()
 	sfc_key[UP_1] = get_keyjoy_conf("Keyboard", "UP_1", RPI_KEY_UP);
 	sfc_key[DOWN_1] = get_keyjoy_conf("Keyboard", "DOWN_1", RPI_KEY_DOWN);
 
-	sfc_key[QUIT] = get_keyjoy_conf("Keyboard", "QUIT", RPI_KEY_QUIT);
+	sfc_key[MODIFIER] = get_keyjoy_conf("Keyboard", "MODIFIER", RPI_KEY_MODIFIER);
 	sfc_key[ACCEL] = get_keyjoy_conf("Keyboard", "ACCEL", RPI_KEY_ACCEL);
 
 /*	sfc_key[LEFT_2] = SDLK_4;
@@ -402,7 +402,7 @@ static void fe_S9xInitInputDevices ()
 	sfc_joy[START_1] = get_keyjoy_conf("Joystick", "START_1", RPI_JOY_START);
 	sfc_joy[SELECT_1] = get_keyjoy_conf("Joystick", "SELECT_1", RPI_JOY_SELECT);
 
-	sfc_joy[QUIT] = get_keyjoy_conf("Joystick", "QUIT", RPI_JOY_QUIT);
+	sfc_joy[MODIFIER] = get_keyjoy_conf("Joystick", "MODIFIER", RPI_JOY_MODIFIER);
 	sfc_joy[ACCEL] = get_keyjoy_conf("Joystick", "ACCEL", RPI_JOY_ACCEL);
 
 	sfc_joy[QLOAD] = get_keyjoy_conf("Joystick", "QLOAD", RPI_JOY_QLOAD);
